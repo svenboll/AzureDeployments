@@ -10,8 +10,8 @@ param NCentralHostname string = 'ncentral.yourdomain.com'
 
 var suffix = substring(toLower(uniqueString(resourceGroup().id, resourceGroup().location)), 0, 5)
 var funcAppName = toLower('${BaseName}-${suffix}')
-var funcStorageName = toLower('${substring(BaseName,0,min(length(BaseName),13))}stg${suffix}')
-var serverFarmName = '${substring(BaseName,0,min(length(BaseName),11))}-srv-${suffix}'
+var funcStorageName = toLower('${substring(BaseName,0,min(length(BaseName),16))}stg${suffix}')
+var serverFarmName = '${substring(BaseName,0,min(length(BaseName),14))}-srv-${suffix}'
 var GitHubRepo = 'https://github.com/svenboll/AzNcentralProxy.git'
 var GitHubBranch = 'main'
 
