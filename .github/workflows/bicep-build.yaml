@@ -1,0 +1,34 @@
+name: Build bicep on push to main
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Build bicep files
+      shell: pwsh
+      run: |
+        az bicep install
+        
+        $files = git diff HEAD~1 --name-only | Where-Object { $_ -like '*.bicep' }
+        
+        if ((Test-Path -path "ARM-Templates") -eq $false) {
+            New-Item -Name "ARM-Templates" -ItemType "Directory" -Force | Out-Null
+        }
+
+        foreach ($file in $files) {
+            az bicep build --file $file --outdir "ARM-Templates"
+        }
+    - name: Push changes
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Upload ARM-Templates
