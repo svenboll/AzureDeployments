@@ -1,4 +1,4 @@
-@description('Base name for resource naming in Azure')
+@description('Base name for resource in Azure')
 param BaseName string = 'AzNcentralProxy'
 
 @description('Your current N-Central JWT Key')
