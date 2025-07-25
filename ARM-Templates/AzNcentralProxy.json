@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.36.177.2456",
-      "templateHash": "6155846576130921821"
+      "templateHash": "14734758930076695631"
     }
   },
   "parameters": {
@@ -34,8 +34,8 @@
   "variables": {
     "suffix": "[substring(toLower(uniqueString(resourceGroup().id, resourceGroup().location)), 0, 5)]",
     "funcAppName": "[toLower(format('{0}-{1}', parameters('BaseName'), variables('suffix')))]",
-    "funcStorageName": "[toLower(format('{0}stg{1}', substring(parameters('BaseName'), 0, min(length(parameters('BaseName')), 13)), variables('suffix')))]",
-    "serverFarmName": "[format('{0}-srv-{1}', substring(parameters('BaseName'), 0, min(length(parameters('BaseName')), 11)), variables('suffix'))]",
+    "funcStorageName": "[toLower(format('{0}stg{1}', substring(parameters('BaseName'), 0, min(length(parameters('BaseName')), 16)), variables('suffix')))]",
+    "serverFarmName": "[format('{0}-srv-{1}', substring(parameters('BaseName'), 0, min(length(parameters('BaseName')), 14)), variables('suffix'))]",
     "GitHubRepo": "https://github.com/svenboll/AzNcentralProxy.git",
     "GitHubBranch": "main"
   },
