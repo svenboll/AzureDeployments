@@ -22,7 +22,9 @@ resource funcStorage 'Microsoft.Storage/storageAccounts@2024-01-01' = {
     name: 'Standard_LRS'
   }
   kind: 'StorageV2'
-  properties: {}
+  properties: {
+    minimumTlsVersion: 'TLS1_2'
+  }
 }
 
 resource serverFarm 'Microsoft.Web/serverfarms@2024-11-01' = {
@@ -48,9 +50,12 @@ resource funcApp 'Microsoft.Web/sites@2024-11-01' = {
   location: resourceGroup().location
   kind: 'functionapp'
   properties: {
+    httpsOnly: true
+    serverFarmId: serverFarm.id
     siteConfig: {
-      powerShellVersion: '7.4'
       autoHealEnabled: true
+      minTlsVersion: '1.2'
+      powerShellVersion: '7.4'
       appSettings: [
         {
           name: 'JWTKey'
@@ -82,7 +87,6 @@ resource funcApp 'Microsoft.Web/sites@2024-11-01' = {
         }
       ]
     }
-    serverFarmId: serverFarm.id
   }
 }
 
