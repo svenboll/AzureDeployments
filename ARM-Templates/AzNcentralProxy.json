@@ -4,8 +4,8 @@
   "metadata": {
     "_generator": {
       "name": "bicep",
-      "version": "0.36.177.2456",
-      "templateHash": "16366379800985715898"
+      "version": "0.37.4.10188",
+      "templateHash": "14756623588916389311"
     }
   },
   "parameters": {
@@ -128,7 +128,8 @@
       "name": "[format('{0}/{1}', variables('funcAppName'), 'web')]",
       "properties": {
         "repoUrl": "[variables('GitHubRepo')]",
-        "branch": "[variables('GitHubBranch')]"
+        "branch": "[variables('GitHubBranch')]",
+        "isManualIntegration": true
       },
       "dependsOn": [
         "[resourceId('Microsoft.Web/sites', variables('funcAppName'))]"
