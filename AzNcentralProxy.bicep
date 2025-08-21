@@ -96,5 +96,6 @@ resource sourcecontrol 'Microsoft.Web/sites/sourcecontrols@2024-11-01' = {
   properties: {
     repoUrl: GitHubRepo
     branch: GitHubBranch
+    isManualIntegration: true
   }
 }
