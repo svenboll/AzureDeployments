@@ -15,7 +15,7 @@ var serverFarmName = '${substring(BaseName,0,min(length(BaseName),14))}-srv-${su
 var GitHubRepo = 'https://github.com/svenboll/AzNcentralProxy.git'
 var GitHubBranch = 'main'
 
-resource funcStorage 'Microsoft.Storage/storageAccounts@2024-01-01' = {
+resource funcStorage 'Microsoft.Storage/storageAccounts@2026-04-01' = {
   name: funcStorageName
   location: resourceGroup().location
   sku: {
@@ -27,7 +27,7 @@ resource funcStorage 'Microsoft.Storage/storageAccounts@2024-01-01' = {
   }
 }
 
-resource serverFarm 'Microsoft.Web/serverfarms@2024-11-01' = {
+resource serverFarm 'Microsoft.Web/serverfarms@2025-03-01' = {
   name: serverFarmName
   location: resourceGroup().location
   sku: {
@@ -45,7 +45,7 @@ resource serverFarm 'Microsoft.Web/serverfarms@2024-11-01' = {
   }
 }
 
-resource funcApp 'Microsoft.Web/sites@2024-11-01' = {
+resource funcApp 'Microsoft.Web/sites@2025-03-01' = {
   name: funcAppName
   location: resourceGroup().location
   kind: 'functionapp'
@@ -54,8 +54,8 @@ resource funcApp 'Microsoft.Web/sites@2024-11-01' = {
     serverFarmId: serverFarm.id
     siteConfig: {
       autoHealEnabled: true
-      minTlsVersion: '1.2'
-      powerShellVersion: '7.4'
+      minTlsVersion: '1.3'
+      powerShellVersion: '7.6'
       appSettings: [
         {
           name: 'JWTKey'
@@ -90,7 +90,7 @@ resource funcApp 'Microsoft.Web/sites@2024-11-01' = {
   }
 }
 
-resource sourcecontrol 'Microsoft.Web/sites/sourcecontrols@2024-11-01' = {
+resource sourcecontrol 'Microsoft.Web/sites/sourcecontrols@2025-03-01' = {
   parent: funcApp
   name: 'web'
   properties: {
