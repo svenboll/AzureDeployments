@@ -54,7 +54,7 @@ resource funcApp 'Microsoft.Web/sites@2025-03-01' = {
     serverFarmId: serverFarm.id
     siteConfig: {
       autoHealEnabled: true
-      minTlsVersion: '1.3'
+      minTlsVersion: '1.2'
       powerShellVersion: '7.6'
       appSettings: [
         {
